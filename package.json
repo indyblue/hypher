@@ -12,7 +12,13 @@
     "lib": "./lib"
   },
   "scripts": {
-    "test": "vows"
+    "test": "vows",
+    "umdcat": "cat lib/*.pre.js lib/hypher.js lib/*.post.js lib/*.umd.js > dist/hypher.umd.js",
+    "make": "mkdir -p dist; cp lib/hypher.js dist/; npm run umdcat",
+    "min1": "npx uglify-js dist/hypher.js > dist/hypher.min.js",
+    "min2": "npx uglify-js dist/hypher.umd.js > dist/hypher.umd.min.js",
+    "min": "npm run make && npm run min1 && npm run min2",
+    "clean": "rm -rf dist"
   },
   "repository": {
     "type": "git",
